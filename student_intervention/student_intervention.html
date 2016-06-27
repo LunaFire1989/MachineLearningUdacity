@@ -12133,10 +12133,11 @@ Testing set has 95 samples.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> I think <strong>Decision Tree</strong>, <strong>SVM</strong>, <strong>Naive Bayes</strong> this three models are appropriate for this problem.
-<strong>General Application:</strong> (1)Decision tree can build expert system by making rules; (2)SVM can be used for face recognition and other classification fields; (3)Naive bayes is mainly used in the field of natural language processing.
-<strong>Strengths and Weaknesses:</strong> (1)Decision tree model is easy to understand but it ignores the correlation between features; (2)SVM is better on small data classification, but there is no general solution to the nonlinear problem, we must be careful to choose kernel function; (3)The parameters of the naive bayes model are very few, and it is not sensitive to the missing data, but the classification efficiency of the naive bayes model is less than other models when the correlation between attributes is relatively large. 
-I think the above three classification models are more suitable to solve this problem, because the data size of the problem is small. Complex neural network model is easy to overfitting, and the optimization of parameters is difficult.</p>
+<p><strong>Answer: </strong></p>
+<p>I think <strong>Decision Tree</strong>, <strong>SVM</strong>, <strong>Naive Bayes</strong> this three models are appropriate for this problem.</p>
+<p><strong>General Application:</strong> (1)Decision tree can build expert system by making rules; (2)SVM can be used for face recognition and other classification fields; (3)Naive bayes is mainly used in the field of natural language processing.</p>
+<p><strong>Strengths and Weaknesses:</strong> (1)Decision tree model is easy to understand but it ignores the correlation between features; (2)SVM is better on small data classification, but there is no general solution to the nonlinear problem, we must be careful to choose kernel function; (3)The parameters of the naive bayes model are very few, and it is not sensitive to the missing data, but the classification efficiency of the naive bayes model is less than other models when the correlation between attributes is relatively large.</p>
+<p><strong>Choose Reason:</strong> I think the above three classification models are more suitable to solve this problem, the reason is:(1)Decision tree model has fast training and predicting time, and the result model is easy to understand; (2)SVM is robust, by using kernel we can split the nonlinear data into two classifications, and it's very suitable for small scale data; (3)The correlation of the features is low in this problem, so I think naive bayes model will have a stable classification efficiency.</p>
 
 </div>
 </div>
@@ -12234,7 +12235,7 @@ I think the above three classification models are more suitable to solve this pr
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
@@ -12258,7 +12259,11 @@ I think the above three classification models are more suitable to solve this pr
 <span class="n">y_train_300</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">300</span><span class="p">]</span>
 
 <span class="c1"># TODO: Execute the &#39;train_predict&#39; function for each classifier and each training set size</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">clf_B</span><span class="p">,</span> <span class="n">clf_C</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">{}: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">]:</span>
+        <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="n">n</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">n</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12271,11 +12276,68 @@ I think the above three classification models are more suitable to solve this pr
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training a GaussianNB using a training set size of 300. . .
-Trained model in 0.0016 seconds
-Made predictions in 0.0005 seconds.
-F1 score for training set: 0.8088.
+<pre>
+DecisionTreeClassifier: 
+
+Training a DecisionTreeClassifier using a training set size of 100. . .
+Trained model in 0.0014 seconds
+Made predictions in 0.0003 seconds.
+F1 score for training set: 1.0000.
+Made predictions in 0.0003 seconds.
+F1 score for test set: 0.6942.
+Training a DecisionTreeClassifier using a training set size of 200. . .
+Trained model in 0.0017 seconds
+Made predictions in 0.0003 seconds.
+F1 score for training set: 1.0000.
+Made predictions in 0.0003 seconds.
+F1 score for test set: 0.7132.
+Training a DecisionTreeClassifier using a training set size of 300. . .
+Trained model in 0.0030 seconds
 Made predictions in 0.0004 seconds.
+F1 score for training set: 1.0000.
+Made predictions in 0.0004 seconds.
+F1 score for test set: 0.7167.
+
+SVC: 
+
+Training a SVC using a training set size of 100. . .
+Trained model in 0.0019 seconds
+Made predictions in 0.0013 seconds.
+F1 score for training set: 0.8591.
+Made predictions in 0.0013 seconds.
+F1 score for test set: 0.7838.
+Training a SVC using a training set size of 200. . .
+Trained model in 0.0056 seconds
+Made predictions in 0.0037 seconds.
+F1 score for training set: 0.8693.
+Made predictions in 0.0016 seconds.
+F1 score for test set: 0.7755.
+Training a SVC using a training set size of 300. . .
+Trained model in 0.0070 seconds
+Made predictions in 0.0072 seconds.
+F1 score for training set: 0.8692.
+Made predictions in 0.0022 seconds.
+F1 score for test set: 0.7586.
+
+GaussianNB: 
+
+Training a GaussianNB using a training set size of 100. . .
+Trained model in 0.0007 seconds
+Made predictions in 0.0003 seconds.
+F1 score for training set: 0.8550.
+Made predictions in 0.0003 seconds.
+F1 score for test set: 0.7481.
+Training a GaussianNB using a training set size of 200. . .
+Trained model in 0.0007 seconds
+Made predictions in 0.0004 seconds.
+F1 score for training set: 0.8321.
+Made predictions in 0.0003 seconds.
+F1 score for test set: 0.7132.
+Training a GaussianNB using a training set size of 300. . .
+Trained model in 0.0009 seconds
+Made predictions in 0.0004 seconds.
+F1 score for training set: 0.8088.
+Made predictions in 0.0003 seconds.
 F1 score for test set: 0.7500.
 </pre>
 </div>
@@ -12451,7 +12513,16 @@ F1 score for test set: 0.7500.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> First, each data is used as a point in the space. The position of each point is determined by its features and the color of each point is determined by its label(ex. passed or not passed). SVM model will draw a line in space, distinguish different color points, and the distance between the line and the different color points is the largest.</p>
+<p><strong>Answer: </strong></p>
+<p>Support vector machine(SVM) is a supervised learning model and it can be uesd for classification. First, we train the model according to labeling data, then we use the model to predict unlabeled data.</p>
+<p>For simplicity, we assume that using two features to predict whether a student pass the final exam. As shown in the following figure, the pink point is "passed" and the blue point is "not passed". Now we can use a line to split the different points. (In the case of the N-dimension, it will be a hyperplane. It is a generalization of the line and plane in N-dimension.)</p>
+<p><img src="http://my.csdn.net/uploads/201206/01/1338565173_3627.png" alt="alt text" title="Student Classification"></p>
+<p>We can see there is more than one line can split the different points. SVM model will find a line that has maximum margin. Maximum margin means the distance between the line(or hyperplane) and nearest different points is maximum. As shown below, the middle red line has maximum margin.</p>
+<p><img src="http://my.csdn.net/uploads/201206/01/1338566153_8925.png" alt="alt text" title="Maximum Margin"></p>
+<p>When we find the line, we can use it to predict whether a student pass the final exam, one side is "pass", the other one is "not pass".</p>
+<p>Unfortunately, the data is not linearly separable sometimes. In this case, SVM use kernel function to map features to high dimensional space, then use a hyperplane to split datas. The process is shown in the following figure.</p>
+<p><img src="http://my.csdn.net/uploads/201206/02/1338612063_1634.JPG" alt="alt text" title="Kernel"></p>
+<p>(<strong>REMARKS</strong>: The images in these question is from Chinese blog: <a href="http://www.cnblogs.com/v-July-v/archive/2012/06/01/2539022.html">http://www.cnblogs.com/v-July-v/archive/2012/06/01/2539022.html</a>)</p>
 
 </div>
 </div>
@@ -12482,7 +12553,7 @@ F1 score for test set: 0.7500.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;gridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -12524,9 +12595,9 @@ F1 score for test set: 0.7500.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0068 seconds.
+<pre>Made predictions in 0.0064 seconds.
 Tuned model has a training F1 score of 0.9717.
-Made predictions in 0.0026 seconds.
+Made predictions in 0.0027 seconds.
 Tuned model has a testing F1 score of 0.7919.
 </pre>
 </div>
