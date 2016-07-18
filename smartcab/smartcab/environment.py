@@ -206,7 +206,7 @@ class Environment(object):
                     reward += 10  # bonus
                     if agent.total_reward > 0:
                         agent.total_succ += 1   
-                    print "Total Reward: ", agent.total_reward
+                    #print "Total Reward: ", agent.total_reward
                 self.done = True
                 print "Environment.act(): Primary agent has reached destination!"  # [debug]
             self.status_text = "state: {}\naction: {}\nreward: {}".format(agent.get_state(), action, reward)
